@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOTD - 天气与穿搭</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f7f7f7;
+            height: 100vh;
+            overflow-y: auto;
+            overscroll-behavior-y: none;
+        }
+        .weather-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .day-forecast {
+            transition: all 0.3s ease;
+        }
+        .day-forecast:hover {
+            transform: translateY(-3px);
+        }
+        .status-bar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .tab-bar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #eaeaea;
+        }
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        .style-chip {
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        .style-chip.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="text-gray-800 relative">
+    <!-- 状态栏 -->
+    <div class="status-bar fixed top-0 left-0 right-0 z-50 px-6 py-3 flex justify-between items-center">
+        <div>10:30</div>
+        <div class="flex space-x-2">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-three-quarters"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容 -->
+    <div class="pt-12 pb-20 px-5">
+        <h1 class="text-2xl font-bold mb-6 mt-2">今日天气与穿搭</h1>
+        
+        <!-- 今日天气卡片 -->
+        <div class="card mb-6 p-5">
+            <div class="flex justify-between items-start">
+                <div>
+                    <div class="text-sm text-gray-500">北京 · 今天</div>
+                    <div class="text-4xl font-bold mt-1">25°C</div>
+                    <div class="text-sm text-gray-600 mt-1">体感温度 27°C</div>
+                    <div class="mt-3 text-sm">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full"><i class="fas fa-wind mr-1"></i> 3级</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full ml-2"><i class="fas fa-tint mr-1"></i> 62%</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="weather-icon text-yellow-500">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div>晴朗</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 近7日天气卡片 -->
+        <div class="card mb-6 p-5">
+            <h2 class="text-lg font-semibold mb-4">未来7天天气</h2>
+            <div class="space-y-4">
+                <!-- 每日天气预报 -->
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">今天</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-sun text-yellow-500"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">25°</span>
+                        <span class="text-gray-400 ml-2">18°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周二</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-cloud-sun text-gray-400"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">23°</span>
+                        <span class="text-gray-400 ml-2">17°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周三</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-cloud-rain text-blue-400"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">21°</span>
+                        <span class="text-gray-400 ml-2">16°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周四</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-cloud text-gray-400"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">22°</span>
+                        <span class="text-gray-400 ml-2">17°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周五</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-sun text-yellow-500"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">24°</span>
+                        <span class="text-gray-400 ml-2">18°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周六</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-sun text-yellow-500"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">26°</span>
+                        <span class="text-gray-400 ml-2">19°</span>
+                    </div>
+                </div>
+                
+                <div class="day-forecast flex justify-between items-center">
+                    <div class="w-16">周日</div>
+                    <div class="flex-1 flex justify-center">
+                        <i class="fas fa-cloud-sun text-gray-400"></i>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-medium">25°</span>
+                        <span class="text-gray-400 ml-2">19°</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 今日穿搭风格卡片 -->
+        <div class="card mb-6 p-5">
+            <h2 class="text-lg font-semibold mb-4">今日穿搭风格</h2>
+            <p class="text-sm text-gray-600 mb-4">选择你今天想要的穿搭风格：</p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">韩系简约风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">甜酷风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer selected">温柔风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">学院风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">设计师品牌风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">复古文艺风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">小香风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">森女系</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">运动休闲风</div>
+                <div class="style-chip px-3 py-2 bg-gray-100 rounded-full text-sm cursor-pointer">Y2K风</div>
+            </div>
+            
+            <button class="w-full py-3 bg-blue-500 text-white font-medium rounded-xl hover:bg-blue-600 transition duration-300 flex justify-center items-center">
+                <i class="fas fa-tshirt mr-2"></i>生成今日OOTD
+            </button>
+        </div>
+    </div>
+    
+    <!-- 底部标签栏 -->
+    <div class="tab-bar fixed bottom-0 left-0 right-0 h-16 flex justify-around items-center z-50">
+        <div class="flex flex-col items-center text-blue-500">
+            <i class="fas fa-tshirt"></i>
+            <span class="text-xs mt-1">OOTD</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400">
+            <i class="fas fa-user"></i>
+            <span class="text-xs mt-1">我的</span>
+        </div>
+    </div>
+    
+    <script>
+        // 添加穿搭风格选择功能
+        document.querySelectorAll('.style-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.style-chip').forEach(c => {
+                    c.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+        
+        // 生成OOTD按钮点击事件
+        document.querySelector('button').addEventListener('click', function() {
+            window.location.href = 'ootd_popup.html';
+        });
+    </script>
+</body>
+</html> 
