@@ -1,62 +1,168 @@
 /**index.wxss**/
 page {
   height: 100vh;
+  background-color: #f7f7f7;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-}
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-  width: 80%;
-}
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.avatar {
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.nickname-wrapper {
-  display: flex;
-  width: 100%;
-  padding: 16px;
   box-sizing: border-box;
-  border-top: .5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
-  color: black;
+  position: relative;
 }
 
-.nickname-label {
-  width: 105px;
+.content-container {
+  padding: 24rpx 30rpx 30rpx 30rpx;
 }
 
-.nickname-input {
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin: 24rpx 0 36rpx 0;
+}
+
+.card {
+  border-radius: 40rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  background: white;
+  margin-bottom: 30rpx;
+  padding: 30rpx;
+  transition: all 0.3s ease;
+}
+
+/* 今日天气卡片 */
+.weather-today {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.location-text {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.temp-large {
+  font-size: 80rpx;
+  font-weight: bold;
+  margin-top: 4rpx;
+}
+
+.feel-temp {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+}
+
+.weather-tags {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.weather-tag {
+  background-color: #E7F2FD;
+  color: #4B80CD;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  margin-right: 16rpx;
+}
+
+.weather-icon-container {
+  text-align: center;
+}
+
+.weather-icon {
+  font-size: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+/* 7日天气卡片 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 24rpx;
+}
+
+.forecast-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.day-name {
+  width: 80rpx;
+}
+
+.day-icon {
   flex: 1;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+.day-temp {
+  text-align: right;
+}
+
+.max-temp {
+  font-weight: 500;
+}
+
+.min-temp {
+  color: #999;
+  margin-left: 16rpx;
+}
+
+/* 穿搭风格卡片 */
+.style-desc {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 24rpx;
+}
+
+.style-chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 36rpx;
+}
+
+.style-chip {
+  padding: 16rpx 20rpx;
+  background-color: #f3f4f6;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  transition: all 0.2s ease;
+  border: 4rpx solid transparent;
+}
+
+.style-chip.selected {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 24rpx 0;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 500;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.generate-btn::after {
+  border: none;
 }

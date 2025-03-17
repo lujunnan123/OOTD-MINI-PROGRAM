@@ -1,0 +1,65 @@
+<!-- ootd-popup.wxml -->
+<view class="popup-mask {{show ? 'show' : ''}}" bindtap="onMaskTap" catchmove="preventTouchMove">
+  <view class="popup {{show ? 'show' : ''}}" catchtap="stopPropagation">
+    <!-- 头部 -->
+    <view class="popup-header">
+      <view class="drag-indicator"></view>
+      <view class="popup-title">今日OOTD推荐</view>
+      <view class="popup-subtitle">根据今日{{weatherDesc}} ({{temp}}°C) 和你的{{styleType}}偏好</view>
+    </view>
+    
+    <!-- 轮播图区域 -->
+    <view class="popup-content">
+      <view class="carousel">
+        <swiper class="carousel-swiper" bindchange="onSwiperChange" current="{{currentSlide}}">
+          <swiper-item wx:for="{{ootdImages}}" wx:key="index">
+            <view class="outfit-container">
+              <!-- 使用固定的模拟穿搭图 -->
+              <text class="outfit-placeholder">{{styleType}}穿搭示例 #{{index+1}}</text>
+              <view class="outfit-details">
+                <text>{{weatherDesc}} • {{temp}}°C</text>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+        
+        <!-- 轮播指示点 -->
+        <view class="carousel-dots">
+          <view wx:for="{{ootdImages}}" wx:key="index" 
+                class="carousel-dot {{currentSlide === index ? 'active' : ''}}"></view>
+        </view>
+        
+        <!-- 左右箭头 -->
+        <view class="carousel-nav carousel-prev" catchtap="prevSlide">
+          <text class="nav-icon">〈</text>
+        </view>
+        <view class="carousel-nav carousel-next" catchtap="nextSlide">
+          <text class="nav-icon">〉</text>
+        </view>
+        
+        <!-- 关闭按钮 -->
+        <view class="close-button" catchtap="onClosePopup">
+          <text class="close-icon">×</text>
+        </view>
+      </view>
+      
+      <!-- 穿搭建议 -->
+      <view class="advice-section">
+        <view class="advice-title">AI穿搭师的建议</view>
+        <view class="advice-content">
+          {{ootdAdvice.paragraph1}}
+        </view>
+        <view class="advice-content">
+          {{ootdAdvice.paragraph2}}
+        </view>
+        <view class="advice-tags">
+          <text wx:for="{{ootdAdvice.tags}}" wx:key="index" class="advice-tag">{{item}}</text>
+        </view>
+        
+        <button class="save-button" bindtap="saveOOTD">
+          <text class="save-icon">💾</text> 保存今日穿搭
+        </button>
+      </view>
+    </view>
+  </view>
+</view> 

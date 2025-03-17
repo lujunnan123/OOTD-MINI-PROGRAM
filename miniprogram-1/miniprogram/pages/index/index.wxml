@@ -1,27 +1,76 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+<view class="container">
+  <!-- 状态栏样式会由小程序自动提供 -->
+  
+  <!-- 主内容 -->
+  <view class="content-container">
+    <view class="page-title">今日天气与穿搭</view>
+    
+    <!-- 今日天气卡片 -->
+    <view class="card">
+      <view class="weather-today">
+        <view class="weather-info">
+          <view class="location-text">{{city}} · 今天</view>
+          <view class="temp-large">{{todayWeather.temp}}°C</view>
+          <view class="feel-temp">体感温度 {{todayWeather.feelTemp}}°C</view>
+          <view class="weather-tags">
+            <text class="weather-tag">🌬️ {{todayWeather.windLevel}}级</text>
+            <text class="weather-tag">💧 {{todayWeather.humidity}}%</text>
+          </view>
         </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
+        <view class="weather-icon-container">
+          <view class="weather-icon">{{todayWeather.icon}}</view>
+          <view>{{todayWeather.desc}}</view>
+        </view>
+      </view>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    
+    <!-- 近7日天气卡片 -->
+    <view class="card">
+      <view class="section-title">未来7天天气</view>
+      <view class="forecast-list">
+        <!-- 每日天气预报 -->
+        <view wx:for="{{weekWeather}}" wx:key="day" class="forecast-item">
+          <view class="day-name">{{item.day}}</view>
+          <view class="day-icon">{{item.icon}}</view>
+          <view class="day-temp">
+            <text class="max-temp">{{item.maxTemp}}°</text>
+            <text class="min-temp">{{item.minTemp}}°</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 今日穿搭风格卡片 -->
+    <view class="card">
+      <view class="section-title">今日穿搭风格</view>
+      <view class="style-desc">选择你今天想要的穿搭风格：</view>
+      
+      <view class="style-chips">
+        <view wx:for="{{styleOptions}}" wx:key="name" 
+              class="style-chip {{selectedStyle === item.name ? 'selected' : ''}}"
+              data-style="{{item.name}}"
+              bindtap="selectStyle">
+          {{item.name}}
+        </view>
+      </view>
+      
+      <button class="generate-btn" bindtap="generateOOTD">
+        👕 生成今日OOTD
+      </button>
     </view>
   </view>
-</scroll-view>
+</view>
+
+<!-- OOTD弹出组件 -->
+<ootd-popup 
+  show="{{showOOTDPopup}}" 
+  weather="{{todayWeather.desc}}" 
+  temperature="{{todayWeather.temp}}" 
+  style="{{selectedStyle}}"
+  outfits="{{generatedOutfits}}"
+  advice="{{stylistAdvice}}"
+  tags="{{adviceTags}}"
+  bind:close="closeOOTDPopup"
+  bind:save="saveOutfit">
+</ootd-popup>

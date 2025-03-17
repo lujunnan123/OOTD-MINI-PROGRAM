@@ -1,0 +1,97 @@
+<!-- profile.wxml -->
+<view class="container">
+  <!-- 主内容 -->
+  <view class="content-container">
+    <view class="page-title">我的</view>
+    
+    <!-- 个人资料卡片 -->
+    <view class="card">
+      <view class="profile-header">
+        <image src="{{userInfo.avatarUrl || defaultAvatarUrl}}" class="avatar"></image>
+        <view class="profile-info">
+          <view class="username">{{userInfo.nickName || '小雨'}}</view>
+          <view class="user-tag">时尚达人</view>
+        </view>
+      </view>
+      
+      <view class="profile-items">
+        <!-- 城市信息 -->
+        <view class="profile-item" bindtap="editCity">
+          <view class="item-left">
+            <text class="item-icon location-icon">📍</text>
+            <text class="item-label">城市</text>
+          </view>
+          <view class="item-right">
+            <text class="item-value">{{city}}</text>
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+        
+        <!-- 性别信息 -->
+        <view class="profile-item" bindtap="editGender">
+          <view class="item-left">
+            <text class="item-icon gender-icon">⚤</text>
+            <text class="item-label">性别</text>
+          </view>
+          <view class="item-right">
+            <text class="item-value">{{gender}}</text>
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+        
+        <!-- 个人描述 -->
+        <view class="profile-item" bindtap="editDescription">
+          <view class="item-left">
+            <text class="item-icon bio-icon">✏️</text>
+            <text class="item-label">个人描述</text>
+          </view>
+          <view class="item-right">
+            <text class="item-value">{{description}}</text>
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 设置卡片 -->
+    <view class="card">
+      <view class="profile-items">
+        <view class="profile-item" bindtap="goToNotifications">
+          <view class="item-left">
+            <text class="item-icon notification-icon">🔔</text>
+            <text class="item-label">消息通知</text>
+          </view>
+          <view class="item-right">
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+        
+        <view class="profile-item" bindtap="goToHelp">
+          <view class="item-left">
+            <text class="item-icon help-icon">❓</text>
+            <text class="item-label">帮助与反馈</text>
+          </view>
+          <view class="item-right">
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+        
+        <view class="profile-item" bindtap="goToSettings">
+          <view class="item-left">
+            <text class="item-icon settings-icon">⚙️</text>
+            <text class="item-label">设置</text>
+          </view>
+          <view class="item-right">
+            <text class="arrow-icon">〉</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 版本信息 -->
+    <view class="version-info">
+      <text>OOTD天气穿搭 v1.0.0</text>
+      <text class="copyright">© 2023 所有权利保留</text>
+    </view>
+  </view>
+</view> 

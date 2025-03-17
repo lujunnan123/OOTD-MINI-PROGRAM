@@ -1,0 +1,93 @@
+<!-- onboarding.wxml -->
+<view class="container">
+  <!-- 欢迎页 -->
+  <view id="step-welcome" class="onboarding-step {{currentStep !== 'welcome' ? 'hidden' : ''}}">
+    <view class="flex-center-content">
+      <image src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="welcome-image" mode="aspectFill"></image>
+      
+      <view class="title">欢迎使用OOTD</view>
+      <view class="subtitle">根据天气为你推荐最适合的穿搭风格，让你每天都时尚出街！</view>
+      
+      <button class="primary-button" bindtap="startOnboarding">
+        开始使用 <text class="button-icon">→</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 步骤1：选择城市 -->
+  <view id="step-city" class="onboarding-step {{currentStep !== 'city' ? 'hidden' : ''}}">
+    <view class="progress-indicator">
+      <view class="progress-dot {{currentStep === 'city' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'gender' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'bio' ? 'active' : ''}}"></view>
+    </view>
+    
+    <view class="step-title">你所在的城市</view>
+    <view class="step-subtitle">我们需要知道你的城市，以便提供准确的天气信息</view>
+    
+    <view class="card">
+      <view class="card-label">选择或输入城市</view>
+      <input type="text" class="input-field" placeholder="例如：北京、上海、广州" 
+             value="{{city}}" bindinput="cityInputChange" />
+      
+      <view class="city-chips">
+        <view class="city-chip" wx:for="{{cityOptions}}" wx:key="index" 
+              bindtap="selectCity" data-city="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    
+    <button class="primary-button {{!city ? 'disabled' : ''}}" bindtap="goToGender" disabled="{{!city}}">
+      下一步 <text class="button-icon">→</text>
+    </button>
+  </view>
+
+  <!-- 步骤2：选择性别 -->
+  <view id="step-gender" class="onboarding-step {{currentStep !== 'gender' ? 'hidden' : ''}}">
+    <view class="progress-indicator">
+      <view class="progress-dot {{currentStep === 'city' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'gender' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'bio' ? 'active' : ''}}"></view>
+    </view>
+    
+    <view class="step-title">你的性别</view>
+    <view class="step-subtitle">我们将根据你的性别推荐合适的穿搭风格</view>
+    
+    <view class="gender-options">
+      <view class="gender-option {{gender === '男生' ? 'selected' : ''}}" bindtap="selectGender" data-gender="男生">
+        <view class="gender-icon male-icon">♂</view>
+        <view class="gender-text">男生</view>
+      </view>
+      
+      <view class="gender-option {{gender === '女生' ? 'selected' : ''}}" bindtap="selectGender" data-gender="女生">
+        <view class="gender-icon female-icon">♀</view>
+        <view class="gender-text">女生</view>
+      </view>
+    </view>
+    
+    <button class="primary-button {{!gender ? 'disabled' : ''}}" bindtap="goToBio" disabled="{{!gender}}">
+      下一步 <text class="button-icon">→</text>
+    </button>
+  </view>
+
+  <!-- 步骤3：个人描述 -->
+  <view id="step-bio" class="onboarding-step {{currentStep !== 'bio' ? 'hidden' : ''}}">
+    <view class="progress-indicator">
+      <view class="progress-dot {{currentStep === 'city' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'gender' ? 'active' : ''}}"></view>
+      <view class="progress-dot {{currentStep === 'bio' ? 'active' : ''}}"></view>
+    </view>
+    
+    <view class="step-title">个人描述</view>
+    <view class="step-subtitle">告诉我们一些关于你的信息，帮助我们更好地了解你的风格偏好</view>
+    
+    <view class="card">
+      <view class="card-label">描述你喜欢的风格（可选）</view>
+      <textarea class="input-field bio-textarea" placeholder="例如：我喜欢简约风格，偏爱蓝色和灰色，平时工作需要商务休闲穿搭..." 
+                value="{{description}}" bindinput="descriptionInputChange"></textarea>
+    </view>
+    
+    <button class="primary-button" bindtap="finishOnboarding">
+      完成 <text class="button-icon">✓</text>
+    </button>
+  </view>
+</view> 
