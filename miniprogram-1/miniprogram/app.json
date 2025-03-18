@@ -31,7 +31,8 @@
     ]
   },
   "usingComponents": {
-    "ootd-popup": "/components/ootd-popup/ootd-popup"
+    "ootd-popup": "/components/ootd-popup/ootd-popup",
+    "weather-skeleton": "/components/skeleton/weather-skeleton"
   },
   "style": "v2",
   "componentFramework": "glass-easel",

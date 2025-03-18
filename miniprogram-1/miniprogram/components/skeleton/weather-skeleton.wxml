@@ -1,0 +1,40 @@
+<!-- weather-skeleton.wxml -->
+<view class="skeleton-container {{loading ? 'loading' : ''}}">
+  <!-- 今日天气骨架屏 -->
+  <block wx:if="{{type === 'today'}}">
+    <view class="today-skeleton animated-bg">
+      <view class="skeleton-header">
+        <view class="skeleton-location animated-bg"></view>
+        <view class="skeleton-temp animated-bg"></view>
+        <view class="skeleton-feel animated-bg"></view>
+        <view class="skeleton-tags">
+          <view class="skeleton-tag animated-bg"></view>
+          <view class="skeleton-tag animated-bg"></view>
+        </view>
+      </view>
+      <view class="skeleton-icon animated-bg"></view>
+    </view>
+  </block>
+  
+  <!-- 未来天气骨架屏 -->
+  <block wx:elif="{{type === 'forecast'}}">
+    <view class="forecast-skeleton">
+      <view class="skeleton-title animated-bg"></view>
+      <view class="skeleton-forecast-list">
+        <view class="skeleton-forecast-item" wx:for="{{7}}" wx:key="index">
+          <view class="skeleton-day animated-bg"></view>
+          <view class="skeleton-icon-small animated-bg"></view>
+          <view class="skeleton-temps">
+            <view class="skeleton-temp-small animated-bg"></view>
+            <view class="skeleton-temp-small animated-bg"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  
+  <!-- 实际内容 -->
+  <view class="{{loading ? 'hidden-content' : 'visible-content'}}">
+    <slot></slot>
+  </view>
+</view> 

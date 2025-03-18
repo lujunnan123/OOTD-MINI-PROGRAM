@@ -7,39 +7,43 @@
     <view class="page-title">今日天气与穿搭</view>
     
     <!-- 今日天气卡片 -->
-    <view class="card">
-      <view class="weather-today">
-        <view class="weather-info">
-          <view class="location-text">{{city}} · 今天</view>
-          <view class="temp-large">{{todayWeather.temp}}°C</view>
-          <view class="feel-temp">体感温度 {{todayWeather.feelTemp}}°C</view>
-          <view class="weather-tags">
-            <text class="weather-tag">🌬️ {{todayWeather.windLevel}}级</text>
-            <text class="weather-tag">💧 {{todayWeather.humidity}}%</text>
+    <weather-skeleton type="today" loading="{{loadingToday}}">
+      <view class="card">
+        <view class="weather-today">
+          <view class="weather-info">
+            <view class="location-text">{{city}} · 今天</view>
+            <view class="temp-large">{{todayWeather.temp}}°C</view>
+            <view class="feel-temp">体感温度 {{todayWeather.feelTemp}}°C</view>
+            <view class="weather-tags">
+              <text class="weather-tag">🌬️ {{todayWeather.windLevel}}级</text>
+              <text class="weather-tag">💧 {{todayWeather.humidity}}%</text>
+            </view>
+          </view>
+          <view class="weather-icon-container">
+            <view class="weather-icon">{{todayWeather.icon}}</view>
+            <view>{{todayWeather.desc}}</view>
           </view>
         </view>
-        <view class="weather-icon-container">
-          <view class="weather-icon">{{todayWeather.icon}}</view>
-          <view>{{todayWeather.desc}}</view>
-        </view>
       </view>
-    </view>
+    </weather-skeleton>
     
     <!-- 近7日天气卡片 -->
-    <view class="card">
-      <view class="section-title">未来7天天气</view>
-      <view class="forecast-list">
-        <!-- 每日天气预报 -->
-        <view wx:for="{{weekWeather}}" wx:key="day" class="forecast-item">
-          <view class="day-name">{{item.day}}</view>
-          <view class="day-icon">{{item.icon}}</view>
-          <view class="day-temp">
-            <text class="max-temp">{{item.maxTemp}}°</text>
-            <text class="min-temp">{{item.minTemp}}°</text>
+    <weather-skeleton type="forecast" loading="{{loadingForecast}}">
+      <view class="card">
+        <view class="section-title">未来7天天气</view>
+        <view class="forecast-list">
+          <!-- 每日天气预报 -->
+          <view wx:for="{{weekWeather}}" wx:key="day" class="forecast-item">
+            <view class="day-name">{{item.day}}</view>
+            <view class="day-icon">{{item.icon}}</view>
+            <view class="day-temp">
+              <text class="max-temp">{{item.maxTemp}}°</text>
+              <text class="min-temp">{{item.minTemp}}°</text>
+            </view>
           </view>
         </view>
       </view>
-    </view>
+    </weather-skeleton>
     
     <!-- 今日穿搭风格卡片 -->
     <view class="card">

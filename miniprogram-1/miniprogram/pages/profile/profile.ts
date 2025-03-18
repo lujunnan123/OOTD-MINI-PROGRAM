@@ -27,11 +27,24 @@ Component({
         itemList: ['北京', '上海', '广州', '深圳', '成都', '杭州'],
         success: (res) => {
           const cities = ['北京', '上海', '广州', '深圳', '成都', '杭州'];
-          this.setData({
-            city: cities[res.tapIndex]
-          });
-          // 保存到本地存储
-          wx.setStorageSync('userCity', cities[res.tapIndex]);
+          const selectedCity = cities[res.tapIndex];
+          
+          // 如果选择了不同的城市
+          if (selectedCity !== this.data.city) {
+            this.setData({
+              city: selectedCity
+            });
+            
+            // 保存到本地存储
+            wx.setStorageSync('userCity', selectedCity);
+            
+            // 显示提示
+            wx.showToast({
+              title: '城市已更新',
+              icon: 'success',
+              duration: 1500
+            });
+          }
         }
       });
     },
