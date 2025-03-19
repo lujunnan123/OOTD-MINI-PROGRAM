@@ -75,6 +75,7 @@
   outfits="{{generatedOutfits}}"
   advice="{{stylistAdvice}}"
   tags="{{adviceTags}}"
+  loading="{{loadingOOTD}}"
   bind:close="closeOOTDPopup"
   bind:save="saveOutfit">
 </ootd-popup>

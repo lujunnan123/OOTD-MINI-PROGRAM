@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "ootd-skeleton": "../ootd-skeleton/ootd-skeleton"
+  }
 } 
