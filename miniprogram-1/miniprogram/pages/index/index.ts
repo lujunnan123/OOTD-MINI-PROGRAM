@@ -144,8 +144,10 @@ Component({
         this.setData({
           stylistAdvice: advice,
           adviceTags: tags,
+          generatedOutfits:res.output, // ljn
           showOOTDPopup: true
         });
+        console.log(res.output); // ljn
         
         wx.hideLoading();
       }).catch((error: any) => {

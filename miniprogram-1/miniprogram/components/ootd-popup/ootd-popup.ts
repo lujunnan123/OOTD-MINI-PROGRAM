@@ -76,8 +76,11 @@ Component({
           paragraph1: advice.split('.').slice(0, 2).join('.') + '.',
           paragraph2: advice.split('.').slice(2).join('.').trim(),
           tags: tags
-        }
+        },
+        ootdImages:outfits
       });
+      console.log('ljn:',this.data.ootdImages);
+      
       
       console.log('OOTD弹窗数据已更新', this.data);
     },

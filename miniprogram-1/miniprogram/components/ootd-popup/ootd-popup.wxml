@@ -1,19 +1,19 @@
 <!-- ootd-popup.wxml -->
-<view class="popup-mask {{show ? 'show' : ''}}" bindtap="close"></view>
-<view class="popup-container {{show ? 'show' : ''}}">
+<view class="popup-mask {{show ? 'show' : ''}}" bindtap="onClosePopup"></view>
+<view class="popup-container {{show ? 'show' : ''}}"catchtouchmove="preventTouchMove" >
   <view class="popup-header">
     <view class="popup-title">今日穿搭推荐</view>
     <view class="popup-subtitle">{{weather}} · {{temperature}}°C · {{style}}</view>
   </view>
   
   <ootd-skeleton loading="{{loading}}">
-    <view class="popup-content">
+    <view class="popup-content" catchtouchmove="{{false}}"> <!--ljn -->
       <view class="outfit-image-container">
-        <image wx:if="{{outfits.length > 0}}" class="outfit-image" src="{{outfits[currentIndex]}}" mode="aspectFill"></image>
-        <view class="image-nav" wx:if="{{outfits.length > 1}}">
-          <view class="nav-btn {{currentIndex === 0 ? 'disabled' : ''}}" bindtap="prevImage">◀</view>
-          <view class="image-counter">{{currentIndex + 1}}/{{outfits.length}}</view>
-          <view class="nav-btn {{currentIndex === outfits.length - 1 ? 'disabled' : ''}}" bindtap="nextImage">▶</view>
+        <image wx:if="{{ootdImages.length > 0}}" class="outfit-image" src="{{ootdImages[currentSlide]}}" mode="aspectFill"></image>
+        <view class="image-nav" wx:if="{{ootdImages.length > 1}}">
+          <view class="nav-btn {{currentSlide === 0 ? 'diabled' :''}}" bindtap="prevSlide">◀</view>
+          <view class="image-counter">{{currentSlide + 1}}/{{ootdImages.length}}</view>
+          <view class="nav-btn {{currentSlide === ootdImages.length - 1 ? 'disabled' :''}}" bindtap="nextSlide">▶</view>
         </view>
       </view>
       
@@ -29,7 +29,7 @@
   </ootd-skeleton>
   
   <view class="popup-footer">
-    <button class="save-btn" bindtap="saveOutfit">保存穿搭</button>
-    <button class="close-btn" bindtap="close">关闭</button>
+    <button class="save-btn" bindtap="saveOOTD">保存穿搭</button>
+    <button class="close-btn" bindtap="onClosePopup">关闭</button>
   </view>
 </view> 
